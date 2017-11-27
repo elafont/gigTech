@@ -1,0 +1,33 @@
+<body>
+ <h1>
+    Api Documentation
+ </h1>
+<br>
+List of Calls recogniced by this server
+<dl>
+	<p>
+	<dt><b>/api.v1/RequestLock/</b><i>RESOURCE</i></dt> 
+		<dd>Asks for a Lock on a given RESOURCE<br>
+		    Returns: <ul><li>200 OK, lock granted</li>
+					 <li>423 Resource already locked</li></ul>
+				     
+		</dd>
+	</p><p>
+	<dt><b>/api.v1/ReleaseLock/</b><i>RESOURCE</i>/<i>KEY</i></dt> 
+		<dd>
+		    Returns: <ul><li>200 OK, lock released</li>
+					 <li>401 Unauthorized, incorrect resource/key</li>
+					 <li>404 Not Found, Lease time expired, lock released</li></ul>      
+		</dd>
+	</p><p>
+	<dt><b>/api.v1/RefreshLeaseTime/</b><i>RESOURCE</i>/<i>KEY</i></dt>
+		<dd>
+			Returns: <ul><li>200 OK, Lease time extended</li>
+					 <li>401 Unauthorized, incorrect resource/key</li>
+					 <li>404 Not Found</li>
+					 <li>410 Lease time expired, lock released</li>
+					 <li>423 Resource locked, unable to refresh</li></ul>
+		</dd>
+	</p>
+</dl>		
+</body>
