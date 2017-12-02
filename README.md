@@ -1,18 +1,18 @@
-Notes about this LockManager
+# Notes about this LockManager
 
-1.- It does manage arbitrary resources using a string as a name
-2.- It can Lock, Release and Refresh a LockManager
-3.- A Refresh must happend every TIMEOUT seconds period, otherwise, other 
-    processes trying to get a lock on the same resource will get it.
-    This is done to avoid dead processes that does not releases locks
-4.- Releasing a lock has precedence over Refresh, ie: if two threads of the 
-    same process one refreshes the lock and the other releases the lock, then 
-    the release will occur no matter what.
-5.- When acquiring a lock, the server return a header with the AuthKey name.
-    This header contains the key that must be used to identify the process that
-    OWNS the lock in the first place. It also checks for the IP, so to operate
-    on a lock you need to be on the same machine that acquired the lock in the
-    first place and have the key that allows the request to complete.
+1. It does manage arbitrary resources using a string as a name
+2. It can Lock, Release and Refresh a LockManager
+3. A Refresh must happend every TIMEOUT seconds period, otherwise, other 
+...processes trying to get a lock on the same resource will get it.
+...This is done to avoid dead processes that does not releases locks
+4. Releasing a lock has precedence over Refresh, ie: if two threads of the 
+...same process one refreshes the lock and the other releases the lock, then 
+...the release will occur no matter what.
+5. When acquiring a lock, the server return a header with the AuthKey name.
+...This header contains the key that must be used to identify the process that
+...OWNS the lock in the first place. It also checks for the IP, so to operate
+...on a lock you need to be on the same machine that acquired the lock in the
+...first place and have the key that allows the request to complete.
         
 When you ask for an already locked resource, the program does not block the 
 execution, it waits for the lock timeout, if it can access the resource then 

@@ -67,22 +67,22 @@ func (li *lockInfo) unLock() {
 }
 
 // returns the activity status of a resource lock
-func (li *lockInfo) isActive() bool {
+func (li lockInfo) isActive() bool {
 	return (li.active)
 }
 
 // returns the activity status of a resource lock
-func (li *lockInfo) isOnTime(t time.Duration) bool {
+func (li lockInfo) isOnTime(t time.Duration) bool {
 	return (time.Since(li.refreshed) < t)
 }
 
 // returns true if the request has autority over the resource
-func (li *lockInfo) isRequestAuthorithed(r *http.Request, key string) bool {
+func (li lockInfo) isRequestAuthorithed(r *http.Request, key string) bool {
 	return (key != li.key() || getIP(r.RemoteAddr) != li.ip)
 }
 
 // returns the key of the lock, used to authenticate requests
-func (li *lockInfo) key() string {
+func (li lockInfo) key() string {
 	return lockKey(li.created)
 }
 
